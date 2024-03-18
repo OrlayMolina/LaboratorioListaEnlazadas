@@ -7,10 +7,10 @@ public class MainEjercicio9 {
     public static void main(String[] args) {
         ListaCircular<Object> objetos = new ListaCircular<>();
         objetos.add("Perro");
-        objetos.add(4);
+        objetos.add("4");
         objetos.add("Esqueleto");
-        objetos.add(23);
-        objetos.add(5);
+        objetos.add("23");
+        objetos.add("5");
         objetos.add("Perro");
 
         Scanner scanner = new Scanner(System.in);
