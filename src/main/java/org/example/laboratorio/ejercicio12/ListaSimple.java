@@ -1,6 +1,7 @@
 package org.example.laboratorio.ejercicio12;
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class ListaSimple<T> implements Iterable<T> {
 
@@ -273,6 +274,43 @@ public class ListaSimple<T> implements Iterable<T> {
             this.nodo = nodo;
             this.posicion = 0;
         }
+
+        // Calcular la media de los valores en la lista
+        public double calcularMedia() {
+            if (estaVacia()) {
+                throw new RuntimeException("Lista vacía");
+            }
+
+            double suma = 0;
+            Nodo<T> aux = nodoPrimero;
+
+            while (aux != null) {
+                suma += Double.parseDouble(aux.getValorNodo().toString());
+                aux = aux.getSiguienteNodo();
+            }
+
+            return suma / tamanio;
+        }
+
+        // Calcular la desviación estándar de los valores en la lista
+        public double calcularDesviacionEstandar() {
+            if (estaVacia()) {
+                throw new RuntimeException("Lista vacía");
+            }
+
+            double media = calcularMedia();
+            double sumatoriaCuadrados = 0;
+            Nodo<T> aux = nodoPrimero;
+
+            while (aux != null) {
+                double valor = Double.parseDouble(aux.getValorNodo().toString());
+                sumatoriaCuadrados += Math.pow(valor - media, 2);
+                aux = aux.getSiguienteNodo();
+            }
+
+            return Math.sqrt(sumatoriaCuadrados / tamanio);
+        }
+
 
         @Override
         public boolean hasNext() {
