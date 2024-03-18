@@ -39,7 +39,7 @@ public class ListaSimple<T> implements Iterable<T> {
 
 
     //Agregar al final de la lista
-    public void agregarfinal(T valorNodo) {
+    public void agregarFinal(T valorNodo) {
 
         Nodo<T> nodo = new Nodo<>(valorNodo);
 
@@ -234,6 +234,41 @@ public class ListaSimple<T> implements Iterable<T> {
 
     }
 
+    public double calcularMedia() {
+        if (estaVacia()) {
+            throw new RuntimeException("Lista vacía");
+        }
+
+        double suma = 0;
+        Nodo<T> aux = nodoPrimero;
+
+        while (aux != null) {
+            suma += Double.parseDouble(aux.getValorNodo().toString());
+            aux = aux.getSiguienteNodo();
+        }
+
+        return suma / tamanio;
+    }
+
+    // Calcular la desviación estándar de los valores en la lista
+    public double calcularDesviacionEstandar() {
+        if (estaVacia()) {
+            throw new RuntimeException("Lista vacía");
+        }
+
+        double media = calcularMedia();
+        double sumatoriaCuadrados = 0;
+        Nodo<T> aux = nodoPrimero;
+
+        while (aux != null) {
+            double valor = Double.parseDouble(aux.getValorNodo().toString());
+            sumatoriaCuadrados += Math.pow(valor - media, 2);
+            aux = aux.getSiguienteNodo();
+        }
+
+        return Math.sqrt(sumatoriaCuadrados / tamanio);
+    }
+
 
     /**
      * Retorna la primera posici�n donde est� guardado el dato
@@ -252,6 +287,12 @@ public class ListaSimple<T> implements Iterable<T> {
         }
 
         return -1;
+    }
+
+    public void putAll(ListaSimple<T> lista) {
+        for (T elemento : lista) {
+            agregarFinal(elemento);
+        }
     }
 
 
@@ -273,42 +314,6 @@ public class ListaSimple<T> implements Iterable<T> {
         public IteradorListaSimple(Nodo<T> nodo) {
             this.nodo = nodo;
             this.posicion = 0;
-        }
-
-        // Calcular la media de los valores en la lista
-        public double calcularMedia() {
-            if (estaVacia()) {
-                throw new RuntimeException("Lista vacía");
-            }
-
-            double suma = 0;
-            Nodo<T> aux = nodoPrimero;
-
-            while (aux != null) {
-                suma += Double.parseDouble(aux.getValorNodo().toString());
-                aux = aux.getSiguienteNodo();
-            }
-
-            return suma / tamanio;
-        }
-
-        // Calcular la desviación estándar de los valores en la lista
-        public double calcularDesviacionEstandar() {
-            if (estaVacia()) {
-                throw new RuntimeException("Lista vacía");
-            }
-
-            double media = calcularMedia();
-            double sumatoriaCuadrados = 0;
-            Nodo<T> aux = nodoPrimero;
-
-            while (aux != null) {
-                double valor = Double.parseDouble(aux.getValorNodo().toString());
-                sumatoriaCuadrados += Math.pow(valor - media, 2);
-                aux = aux.getSiguienteNodo();
-            }
-
-            return Math.sqrt(sumatoriaCuadrados / tamanio);
         }
 
 
