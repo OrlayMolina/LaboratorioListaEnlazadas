@@ -45,12 +45,16 @@ public class ArchivoUtil {
         BufferedReader bfr = new BufferedReader(fr);
         String linea;
         while ((linea = bfr.readLine()) != null) {
-            contenido.agregarInicio(Integer.parseInt(linea.trim()));
+            String[] numeros = linea.split("@@");
+            for (String num : numeros) {
+                contenido.agregarFinal(Integer.parseInt(num.trim()));
+            }
         }
         bfr.close();
         fr.close();
         return contenido;
     }
+
 
 
 
