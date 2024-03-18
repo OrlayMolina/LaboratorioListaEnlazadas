@@ -1,5 +1,8 @@
 package org.example.laboratorio.ejercicio6;
 
+/**
+ * Escribir el método imprimirHaciaAtras() de una lista doblemente enlazada.
+ */
 public class MainEjercicio6 {
 
     public static void main(String[] args) {
