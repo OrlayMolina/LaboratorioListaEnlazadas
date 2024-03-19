@@ -1,4 +1,4 @@
-package org.example.laboratorio.ejercicio4;
+package org.example.laboratorio.ejercicio5;
 
 import java.util.Iterator;
 
@@ -22,10 +22,11 @@ public class ListaSimple<T> implements Iterable<T> {
     //Agregar al inicio de la lista
     public void agregarInicio(T valorNodo) {
         Nodo<T> nuevoNodo = new Nodo<>(valorNodo);
-        if (estaVacia()) {
+        if(estaVacia())	{
             nodoPrimero = nuevoNodo;
             nodoUltimo = nuevoNodo;
-        } else {
+        }
+        else{
             nuevoNodo.setSiguienteNodo(nodoPrimero);
             nodoPrimero = nuevoNodo;
         }
@@ -37,9 +38,9 @@ public class ListaSimple<T> implements Iterable<T> {
     public void agregarfinal(T valorNodo) {
         Nodo<T> nodo = new Nodo<>(valorNodo);
 
-        if (estaVacia()) {
+        if( estaVacia() ) {
             nodoPrimero = nodoUltimo = nodo;
-        } else {
+        }else {
             nodoUltimo.setSiguienteNodo(nodo);
             nodoUltimo = nodo;
         }
@@ -51,14 +52,13 @@ public class ListaSimple<T> implements Iterable<T> {
     public T obtenerValorNodo(int indice) {
         Nodo<T> nodoTemporal = null;
         int contador = 0;
-        if (indiceValido(indice)) {
+        if(indiceValido(indice)){
             nodoTemporal = nodoPrimero;
             while (contador < indice) {
                 nodoTemporal = nodoTemporal.getSiguienteNodo();
                 contador++;
             }
-        }
-        if (nodoTemporal != null)
+        }if(nodoTemporal != null)
             return nodoTemporal.getValorNodo();
         else
             return null;
@@ -67,7 +67,7 @@ public class ListaSimple<T> implements Iterable<T> {
 
     //Verificar si indice es valido
     private boolean indiceValido(int indice) {
-        if (indice >= 0 && indice < tamanio) {
+        if( indice >= 0 && indice < tamanio ) {
             return true;
         }
         throw new IndexOutOfBoundsException("Indice no valido");
@@ -76,7 +76,7 @@ public class ListaSimple<T> implements Iterable<T> {
 
     //Verificar si la lista esta vacia
     public boolean estaVacia() {
-        return (nodoPrimero == null) ? true : false;
+        return(nodoPrimero == null)?true:false;
     }
 
 
@@ -87,24 +87,37 @@ public class ListaSimple<T> implements Iterable<T> {
 
         Nodo<T> aux = nodoPrimero;
 
-        while (aux != null) {
-            System.out.print(aux.getValorNodo() + "\t");
+        while(aux!=null) {
+            System.out.print( aux.getValorNodo()+"\t" );
             aux = aux.getSiguienteNodo();
         }
 
         System.out.println();
     }
+    public int contarNoRepeticiones(T valor) {
+        int contador = 0;
+        Nodo<T> actual = nodoPrimero;
+
+        while (actual != null) {
+            if (actual.getValorNodo().equals(valor)) {
+                contador++;
+            }
+            actual = actual.getSiguienteNodo();
+        }
+
+        return contador;
+    }
 
     //Eliminar dado el valor de un nodo
-    public T eliminar(T dato) {
+    public T eliminar(T dato){
         Nodo<T> nodo = nodoPrimero;
         Nodo<T> previo = null;
         Nodo<T> siguiente = null;
         boolean encontrado = false;
 
         //buscar el nodo previo
-        while (nodo != null) {
-            if (nodo.getValorNodo() == dato) {
+        while(nodo!=null) {
+            if( nodo.getValorNodo() == dato ) {
                 encontrado = true;
                 break;
             }
@@ -112,17 +125,17 @@ public class ListaSimple<T> implements Iterable<T> {
             nodo = nodo.getSiguienteNodo();
         }
 
-        if (encontrado) {
+        if(encontrado) {
             siguiente = nodo.getSiguienteNodo();
-            if (previo == null) {
+            if( previo==null ) {
                 nodoPrimero = siguiente;
-            } else {
+            }else {
                 previo.setSiguienteNodo(siguiente);
             }
 
-            if (siguiente == null) {
+            if(siguiente==null) {
                 nodoUltimo = previo;
-            } else {
+            }else {
                 nodo.setSiguienteNodo(null);
             }
 
@@ -137,12 +150,12 @@ public class ListaSimple<T> implements Iterable<T> {
     //Elimina el primer nodo de la lista
     public T eliminarPrimero() {
 
-        if (!estaVacia()) {
+        if( !estaVacia() ) {
             Nodo<T> n = nodoPrimero;
             T valor = n.getValorNodo();
             nodoPrimero = n.getSiguienteNodo();
 
-            if (nodoPrimero == null) {
+            if(nodoPrimero==null) {
 //				nodoUltimo = null;
             }
 
@@ -156,7 +169,7 @@ public class ListaSimple<T> implements Iterable<T> {
 
     private Nodo<T> obtenerNodo(int indice) {
 
-        if (indice >= 0 && indice < tamanio) {
+        if(indice>=0 && indice<tamanio) {
 
             Nodo<T> nodo = nodoPrimero;
 
@@ -173,13 +186,12 @@ public class ListaSimple<T> implements Iterable<T> {
 
     /**
      * Cambia el valor de un nodo dada su posici�n en la lista
-     *
      * @param indice posici�n donde se va a cambiar el dato
-     * @param nuevo  nuevo valor por el que se actualizar� el nodo
+     * @param nuevo nuevo valor por el que se actualizar� el nodo
      */
     public void modificarNodo(int indice, T nuevo) {
 
-        if (indiceValido(indice)) {
+        if( indiceValido(indice) ) {
             Nodo<T> nodo = obtenerNodo(indice);
             nodo.setValorNodo(nuevo);
         }
@@ -189,7 +201,6 @@ public class ListaSimple<T> implements Iterable<T> {
 
     /**
      * Retorna la primera posici�n donde est� guardado el dato
-     *
      * @param dato valor a buscar dentro de la lista
      * @return primera posici�n del dato
      */
@@ -197,8 +208,8 @@ public class ListaSimple<T> implements Iterable<T> {
 
         int i = 0;
 
-        for (Nodo<T> aux = nodoPrimero; aux != null; aux = aux.getSiguienteNodo()) {
-            if (aux.getValorNodo().equals(dato)) {
+        for( Nodo<T> aux = nodoPrimero ; aux!=null ; aux = aux.getSiguienteNodo() ) {
+            if( aux.getValorNodo().equals(dato) ) {
                 return i;
             }
             i++;
@@ -211,30 +222,24 @@ public class ListaSimple<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
 
-        return new IteradorListaSimple(nodoPrimero);
+        return new IteradorListaSimple (nodoPrimero);
     }
 
-
-
-    public class IteradorListaSimple implements Iterator<T> {
+    public class IteradorListaSimple implements Iterator<T>{
         private Nodo<T> nodo;
         private int posicion;
-
         /**
          * Constructor de la clase Iterador
-         *
-         * @param nodo Primer Nodo de la lista
+         * @param
          */
         public IteradorListaSimple(Nodo<T> nodo) {
             this.nodo = nodo;
             this.posicion = 0;
         }
-
         @Override
         public boolean hasNext() {
-            return nodo != null;
+            return nodo!=null;
         }
-
         @Override
         public T next() {
             T valor = nodo.getValorNodo();
@@ -242,10 +247,8 @@ public class ListaSimple<T> implements Iterable<T> {
             posicion++;
             return valor;
         }
-
         /**
          * Posici�n actual de la lista
-         *
          * @return posici�n
          */
         public int getPosicion() {
@@ -278,31 +281,13 @@ public class ListaSimple<T> implements Iterable<T> {
     }
 
 
-    public ListaSimple<T> obtenerNumerosImpares() {
-        ListaSimple<T> listaImpares = new ListaSimple<>();
 
-        Nodo<T> actual = nodoPrimero;
 
-        while (actual != null) {
-            if (esNumeroImpar(actual.getValorNodo())) {
-                listaImpares.agregarfinal(actual.getValorNodo());
-            }
-            actual = actual.getSiguienteNodo();
-        }
 
-        return listaImpares;
-    }
 
-    private boolean esNumeroImpar(T numero) {
-        if (numero instanceof Integer) {
-            Integer valor = (Integer) numero;
-            return valor % 2 != 0;
-        } else if (numero instanceof Double) {
-            Double valor = (Double) numero;
-            return valor % 2 != 0;
-        }
-        return false;
-    }
+
 
 
 }
+
+
