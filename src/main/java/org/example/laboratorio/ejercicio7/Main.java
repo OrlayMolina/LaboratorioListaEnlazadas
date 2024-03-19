@@ -1,5 +1,9 @@
 package org.example.laboratorio.ejercicio7;
 
+/*
+ *Ejercicio 7. Escribir el Iterador para una lista doblemente enlazada.
+ */
+
 // Clase Main para probar el iterador
 class Main {
     public static void main(String[] args) {
