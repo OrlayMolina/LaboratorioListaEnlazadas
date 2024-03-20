@@ -1,0 +1,23 @@
+Dada la siguiente declaración de lista enlazada:
+public class NodoLista{
+     int dato;
+     NodoLista sig;
+     public NodoLista (int x, NodoLista n){
+          clave = x;
+          sig = n;
+     }
+}
+public class Lista{
+     NodoLista inicio;
+     Lista (){
+          inicio = null;
+     }
+}
+Se pide:
+Desarrollar un algoritmo recursivo en Java tal que dada una lista perteneciente al tipo anterior y una clave entera, x,
+determine la máxima distancia existente entre dos elementos de la lista que contenga la clave x.
+Observaciones:
+No se permite la utilización de ninguna estructura de datos auxiliar
+Solo se permite la realización de un único recorrido en la lista
+Se supone que la clave x, siempre va existir en la lista
+En caso de que solo se encuentre un único elemento que contiene la clave x, se debe devolver la máxima distancia con el valor cero.
