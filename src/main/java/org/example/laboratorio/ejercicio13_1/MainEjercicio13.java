@@ -16,6 +16,6 @@ public class MainEjercicio13 {
         int maxDistancia = lista.maximaDistancia(x);
         System.out.println("La máxima distancia entre elementos con la clave " + x + " es: " + maxDistancia);
     }
-    
+
 
 }
